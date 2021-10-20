@@ -12,7 +12,7 @@ import { GalaxyDatasource } from './galaxy';
 import * as datasourceGithubTags from './github-tags';
 import * as datasourceMaven from './maven';
 import * as datasourceNpm from './npm';
-import * as datasourcePackagist from './packagist';
+import { PackagistDatasource } from './packagist';
 import type { DatasourceApi } from './types';
 import * as datasource from '.';
 
@@ -24,7 +24,7 @@ jest.mock('./packagist');
 const dockerDatasource = mocked(datasourceDocker);
 const mavenDatasource = mocked(datasourceMaven);
 const npmDatasource = mocked(datasourceNpm);
-const packagistDatasource = mocked(datasourcePackagist);
+const packagistDatasource = mocked(PackagistDatasource);
 
 describe('datasource/index', () => {
   beforeEach(() => {
@@ -179,7 +179,7 @@ describe('datasource/index', () => {
       releases: [{ version: '1.0.0' }],
     });
     const res = await datasource.getPkgReleases({
-      datasource: datasourcePackagist.id,
+      datasource: PackagistDatasource.id,
       depName: 'something',
       registryUrls: ['https://reg1.com', 'https://reg2.io'],
     });
@@ -191,7 +191,7 @@ describe('datasource/index', () => {
     });
     expect(
       await datasource.getPkgReleases({
-        datasource: datasourcePackagist.id,
+        datasource: PackagistDatasource.id,
         depName: 'something',
         registryUrls: ['https://reg1.com'],
       })
@@ -203,7 +203,7 @@ describe('datasource/index', () => {
     });
     await expect(
       datasource.getPkgReleases({
-        datasource: datasourcePackagist.id,
+        datasource: PackagistDatasource.id,
         depName: 'something',
         registryUrls: ['https://reg1.com', 'https://reg2.io'],
       })
@@ -218,7 +218,7 @@ describe('datasource/index', () => {
     });
     expect(
       await datasource.getPkgReleases({
-        datasource: datasourcePackagist.id,
+        datasource: PackagistDatasource.id,
         depName: 'something',
         registryUrls: ['https://reg1.com', 'https://reg2.io'],
       })

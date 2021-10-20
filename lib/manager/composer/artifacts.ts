@@ -6,7 +6,7 @@ import {
   SYSTEM_INSUFFICIENT_DISK_SPACE,
   TEMPORARY_ERROR,
 } from '../../constants/error-messages';
-import * as datasourcePackagist from '../../datasource/packagist';
+import { PackagistDatasource } from '../../datasource/packagist';
 import { logger } from '../../logger';
 import { ExecOptions, exec } from '../../util/exec';
 import {
@@ -57,7 +57,7 @@ function getAuthJson(): string | null {
     });
 
   hostRules
-    .findAll({ hostType: datasourcePackagist.id })
+    .findAll({ hostType: PackagistDatasource.id })
     ?.forEach((hostRule) => {
       const { resolvedHost, username, password, token } = hostRule;
       if (resolvedHost && username && password) {
