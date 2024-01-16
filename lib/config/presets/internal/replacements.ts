@@ -15,6 +15,7 @@ export const presets: Record<string, Preset> = {
       'replacements:containerbase',
       'replacements:cucumber-to-scoped',
       'replacements:fastify-to-scoped',
+      'replacements:flake8-pathlib-to-flake8-use-pathlib',
       'replacements:hapi-to-scoped',
       'replacements:jade-to-pug',
       'replacements:joi-to-scoped',
@@ -31,6 +32,7 @@ export const presets: Record<string, Preset> = {
       'replacements:rollup-node-resolve-to-scoped',
       'replacements:rome-to-biome',
       'replacements:semantic-release-replace-plugin-to-unscoped',
+      'replacements:svg.elements-to-svgelements',
       'replacements:vso-task-lib-to-azure-pipelines-task-lib',
       'replacements:vsts-task-lib-to-azure-pipelines-task-lib',
       'replacements:xmldom-to-scoped',
@@ -530,6 +532,17 @@ export const presets: Record<string, Preset> = {
       },
     ],
   },
+  'flake8-pathlib-to-flake8-use-pathlib': {
+    description: 'flake8-pathlib was renamed to flake8-use-pathlib',
+    packageRules: [
+      {
+        matchDatasources: ['pypi'],
+        matchPackageNames: ['flake8-pathlib'],
+        replacementName: 'flake8-use-pathlib',
+        replacementVersion: '0.2.0',
+      },
+    ],
+  },
   'hapi-to-scoped': {
     description: '`hapi` became scoped.',
     packageRules: [
@@ -773,6 +786,17 @@ export const presets: Record<string, Preset> = {
         matchPackageNames: ['Spectre.Cli'],
         replacementName: 'Spectre.Console.Cli',
         replacementVersion: '0.45.0',
+      },
+    ],
+  },
+  'svg.elements-to-svgelements': {
+    description: 'svg.elements was renamed to svgelements',
+    packageRules: [
+      {
+        matchDatasources: ['pypi'],
+        matchPackageNames: ['svg.elements'],
+        replacementName: 'svgelements',
+        replacementVersion: '1.0.0',
       },
     ],
   },
